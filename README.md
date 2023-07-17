@@ -21,7 +21,7 @@ With **8 main attributes** per listing:
 Below, the power of the `.py` script: 
 
 ```bash
-python3 bien-ici-scraper.py -u https://www.bienici.com/recherche/achat/france/chateau -p 1  
+python3 bien_ici_scraper_20230710.py -u https://www.bienici.com/recherche/achat/france/chateau -p 1  
 going to page: 1
 total results: 555
 total results to scrape: 25
@@ -103,7 +103,10 @@ If you want to bypass this limitation, please do split your main search link wit
 
 💇
 
-For example, if you want to scrape all listings from Paris, **split** within neighborhoods: 
-75001 all listings
-75002 all listings
+For example, if you want to scrape all listings from Paris, **split** within neighborhoods: \
+75001 all listings \
+75002 all listings \
 etc.
+
+
+
