@@ -1,6 +1,6 @@
 # bienici-listings-scraper
 
-`bienici-listings-scraper ` will let you download **all listings from any Bien'Ici search URL** 💛
+`bienici-listings-scraper` will let you download **all listings from any Bien'Ici search URL** 💛
 
 With **8 main attributes** per listing: 
 
