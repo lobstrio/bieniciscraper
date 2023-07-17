@@ -97,6 +97,7 @@ BOOLEAN_VALUES = {
 ENERGY_CLASSIFICATION_VALUES = ["energyClassification"]
 NUMBER_VALUES = ["minPrice", "maxPrice", "minBedrooms", "maxBedrooms", "minArea", "maxArea", "minGardenSurfaceArea", "maxGardenSurfaceArea"]
 
+# Property URL parameters mapping
 URL_PARAMETERS = {
     "minPrice": "prix-min",
     "maxPrice": "prix-max",
@@ -174,6 +175,7 @@ URL_PARAMETERS = {
     "chargingStations": "recharge-vehicule-electrique"
 }
 
+# Reverse mapping of URL parameters
 REVERSED_URL_PARAMETERS = {v: k for k, v in URL_PARAMETERS.items()}
 
 # Sort options mapping
@@ -193,6 +195,7 @@ SORT_OPTIONS = {
     "phoneDisplays": "appels"
 }
 
+# Reverse mapping of sort options
 REVERSED_SORT_OPTIONS = {v: k for k, v in SORT_OPTIONS.items()}
 
 FILTER_TYPE_OPTIONS = {
@@ -242,6 +245,8 @@ class BienIciScraper:
 		FILTERS["from"] = None
 		FILTERS["page"] = None
 		FILTERS["onTheMarket"] = [True]
+		# d["extensionType"] = "extendedIfNoResult"
+		#d["leadingCount"] = 2
 		parsed_url = urlparse(url)
 		query_params = parse_qs(parsed_url.query)
 		path = parsed_url.path
@@ -424,22 +429,22 @@ if __name__ == '__main__':
 
 	argparser = argparse.ArgumentParser()
 	argparser.add_argument(
-    '--search-url', 
-    '-u', 
-    type=str, 
-    required=False, 
-    help='bienici search url', 
-    default='https://www.bienici.com/recherche/achat/france/chateau'
-  )
+		'--search-url', 
+		'-u', 
+		type=str, 
+		required=False, 
+		help='bienici search url', 
+		default='https://www.bienici.com/recherche/achat/france/chateau'
+	)
 
 	argparser.add_argument(
-    '--max-page', 
-    '-p', 
-    type=range_limited_integer_type, 
-    required=False, 
-    help='max page you want to reach (by default null) - must be between 1 and 100', 
-    default=None
-  )
+		'--max-page', 
+		'-p', 
+		type=range_limited_integer_type, 
+		required=False, 
+		help='max page you want to reach (by default null) - must be between 1 and 100', 
+		default=None
+	)
 
 	args = argparser.parse_args()
 
