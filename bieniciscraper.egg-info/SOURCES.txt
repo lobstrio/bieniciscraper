@@ -1,0 +1,13 @@
+LICENSE
+README.md
+setup.py
+bieniciscraper/__init__.py
+bieniciscraper/constants.py
+bieniciscraper/main.py
+bieniciscraper/scraper.py
+bieniciscraper.egg-info/PKG-INFO
+bieniciscraper.egg-info/SOURCES.txt
+bieniciscraper.egg-info/dependency_links.txt
+bieniciscraper.egg-info/entry_points.txt
+bieniciscraper.egg-info/requires.txt
+bieniciscraper.egg-info/top_level.txt
