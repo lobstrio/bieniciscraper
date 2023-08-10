@@ -49,8 +49,6 @@ class BienIciScraper:
 		FILTERS["from"] = None
 		FILTERS["page"] = None
 		FILTERS["onTheMarket"] = [True]
-		# d["extensionType"] = "extendedIfNoResult"
-		#d["leadingCount"] = 2
 		parsed_url = urlparse(url)
 		query_params = parse_qs(parsed_url.query)
 		path = parsed_url.path
@@ -74,7 +72,25 @@ class BienIciScraper:
 
 		_property_types_values = _property_types_values if _property_types_values else DEFAULT_PROPERTY_TYPES
 		FILTERS["propertyType"] = _property_types_values
+
+		# /10-pieces-et-plus
+		min_rooms = None
+		max_rooms = None
+		if ROOMS_PATTERN_PLUS.findall(path):
+			min_rooms = int(ROOMS_PATTERN_PLUS.findall(path)[0])
+		elif ROOMS_PATTERN_MINUS.findall(path): 
+			min_rooms = int(ROOMS_PATTERN_MINUS.findall(path)[0])
+		elif ROOMS_PATTERN_RANGE.findall(path): 
+			min_rooms = int(ROOMS_PATTERN_RANGE.findall(path)[0])
+			max_rooms = int(ROOMS_PATTERN_RANGE.findall(path)[1])
+		elif ROOMS_PATTERN_SINGLE.match(segment):
+			min_rooms = int(ROOMS_PATTERN_SINGLE.findall(path)[0])
+		if min_rooms: 
+			FILTERS["minRooms"] = min_rooms
+		if max_rooms: 
+			FILTERS["maxRooms"] = max_rooms
 		
+		# additional parameters
 		if query_params: 
 			for k, v in query_params.items(): 
 

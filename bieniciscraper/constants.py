@@ -14,7 +14,11 @@ __all__ = [
     "FILTER_TYPE_OPTIONS", 
     "FRENCH_SLUG_TO_DB", 
     "DEFAULT_PROPERTY_TYPES", 
-    "DEFAULT_SORT_BY"
+    "DEFAULT_SORT_BY", 
+    "ROOMS_PATTERN_PLUS", 
+    "ROOMS_PATTERN_MINUS", 
+    "ROOMS_PATTERN_RANGE", 
+    "ROOMS_PATTERN_SINGLE"
 ]
 
 MIN_LIMIT_VAL = 1
@@ -52,6 +56,7 @@ FIELDNAMES = [
 ]
 
 BOOLEAN_VALUES = {
+    "hasFirePlace": True,
     "newProperty": True,
     "isOnLastFloor": True,
     "isGroundFloor": True,
@@ -62,7 +67,6 @@ BOOLEAN_VALUES = {
     "hasBalconyOrTerrace": True,
     "hasCellar": True,
     "hasParking": True,
-    "hasFirePlace": True,
     "hasDoorCode": True,
     "hasIntercom": True,
     "hasGarden": True,
@@ -109,6 +113,7 @@ NUMBER_VALUES = ["minPrice", "maxPrice", "minBedrooms", "maxBedrooms", "minArea"
 
 # Property URL parameters mapping
 URL_PARAMETERS = {
+    "hasFirePlace": "cheminee",
     "minPrice": "prix-min",
     "maxPrice": "prix-max",
     "minArea": "surface-min",
@@ -133,7 +138,6 @@ URL_PARAMETERS = {
     "hasBalconyOrTerrace": "balcon-ou-terrasse",
     "hasCellar": "cave",
     "hasParking": "parking",
-    "hasFirePlace": "cheminee",
     "hasDoorCode": "digicode",
     "hasIntercom": "interphone",
     "hasGarden": "jardin",
@@ -234,3 +238,8 @@ FRENCH_SLUG_TO_DB = {
 DEFAULT_PROPERTY_TYPES = ["house","flat","loft","castle","townhouse"]
 
 DEFAULT_SORT_BY = ("relevance","desc")
+
+ROOMS_PATTERN_PLUS = re.compile(r"(\d+)-pi[èe]ces?-et-plus")
+ROOMS_PATTERN_MINUS = re.compile(r"(\d+)-pi[èe]ces?-et-moins")
+ROOMS_PATTERN_RANGE = re.compile(r"de-(\d+)-a-(\d+)-?pi[èe]ces?")
+ROOMS_PATTERN_SINGLE = re.compile(r"(\d+)-pi[èe]ces?")
