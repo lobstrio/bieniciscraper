@@ -10,6 +10,7 @@ import copy
 from retry import retry
 from .constants import *
 
+
 class BienIciScraper: 
 
 	def __init__(
@@ -83,7 +84,7 @@ class BienIciScraper:
 		elif ROOMS_PATTERN_RANGE.findall(path): 
 			min_rooms = int(ROOMS_PATTERN_RANGE.findall(path)[0])
 			max_rooms = int(ROOMS_PATTERN_RANGE.findall(path)[1])
-		elif ROOMS_PATTERN_SINGLE.match(segment):
+		elif ROOMS_PATTERN_SINGLE.match(path):
 			min_rooms = int(ROOMS_PATTERN_SINGLE.findall(path)[0])
 		if min_rooms: 
 			FILTERS["minRooms"] = min_rooms
@@ -147,13 +148,14 @@ class BienIciScraper:
 		for l in locations: 
 			url = 'https://res.bienici.com/suggest.json?q=%s' % l
 			print('searching location id for %s' % l)
-			response = self.s.get(url, headers=HEADERS)
+			response = requests.get(url, headers=HEADERS)
 			assert response.status_code == 200
 			location_dict = response.json()[0]
-			location_id = location_dict["zoneIds"][0]
-			assert location_id
-			print('found %s' % location_id)
-			location_ids.append(location_id)
+			location_ids_list = location_dict["zoneIds"]
+			assert location_ids_list
+			for l in location_ids_list: 
+				print('found %s' % l)
+				location_ids.append(l)
 		return location_ids
 
 	@retry(AssertionError, tries=3, delay=5, backoff=2)
@@ -214,39 +216,7 @@ class BienIciScraper:
 			ads = response.json()["realEstateAds"]
 			for ad in ads: 
 
-				city = ad.get("city","")
-				postal_code = ad.get("postalCode","")
-				ad_type = ad.get("adType","")
-				property_type = ad.get("propertyType","")
-				reference = ad.get("reference","")
-				title = ad.get("title","")
-				publication_date = ad.get("publicationDate","")
-				modification_date = ad.get("modificationDate","")
-				new_property = ad.get("newProperty","")
-				rooms_quantity = ad.get("roomsQuantity","")
-				bedrooms_quantity = ad.get("bedroomsQuantity","")
-				price = ad.get("price","")
-				photos = ", ".join([u.get("url_photo","") for u in ad.get("photos",[])])
-
-				VALUES = [
-					city, 
-					postal_code, 
-					ad_type, 
-					property_type, 
-					reference, 
-					title, 
-					publication_date, 
-					modification_date, 
-					new_property, 
-					rooms_quantity, 
-					bedrooms_quantity, 
-					price, 
-					photos
-				]
-
-				print("scraped: %s" % title)
-				
-				d = dict(zip(FIELDNAMES, VALUES))
+				d = self.parse_ad(ad)
 				self.DATA.append(d)
 				self.total_scraped_results += 1
 				
@@ -263,6 +233,53 @@ class BienIciScraper:
 			self.page += 1
 
 		self.write_to_csv()
+
+	def parse_ad(self, ad): 
+		"""
+        Parse the given ad data dictionary and extract relevant information.
+
+        Args:
+            ad (dict): A dictionary containing ad information.
+
+        Returns:
+            dict: A dictionary containing extracted ad information.
+        """
+		assert ad and isinstance(ad, dict)
+		city = ad.get("city","")
+		postal_code = ad.get("postalCode","")
+		ad_type = ad.get("adType","")
+		property_type = ad.get("propertyType","")
+		reference = ad.get("reference","")
+		title = ad.get("title","")
+		publication_date = ad.get("publicationDate","")
+		modification_date = ad.get("modificationDate","")
+		new_property = ad.get("newProperty","")
+		rooms_quantity = ad.get("roomsQuantity","")
+		bedrooms_quantity = ad.get("bedroomsQuantity","")
+		price = ad.get("price","")
+		photos = ", ".join([u.get("url_photo","") for u in ad.get("photos",[])])
+
+		VALUES = [
+			city, 
+			postal_code, 
+			ad_type, 
+			property_type, 
+			reference, 
+			title, 
+			publication_date, 
+			modification_date, 
+			new_property, 
+			rooms_quantity, 
+			bedrooms_quantity, 
+			price, 
+			photos
+		]
+
+		print("scraped: %s" % title)
+		
+		d = dict(zip(FIELDNAMES, VALUES))	
+		return d
+
 
 	def write_to_csv(self): 
 		"""
@@ -322,4 +339,3 @@ def scrape(
 | | (_) | |_) \__ \ |_ | |  
 |_|\___/|_.__/|___/\__||_|  
 ''')
-

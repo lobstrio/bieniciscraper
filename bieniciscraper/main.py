@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
 import argparse
-from .scraper import scrape
-from .constants import MIN_LIMIT_VAL, MAX_LIMIT_VAL
+from bieniciscraper.scraper import scrape
+from bieniciscraper.constants import MIN_LIMIT_VAL, MAX_LIMIT_VAL
 
 def range_limited_integer_type(arg):
     try:
@@ -30,8 +30,8 @@ def main():
         '--limit', 
         type=range_limited_integer_type,
         required=False, 
-        default=2500, 
-        help='maximum number of listings to scrape — by default 2500'
+        default=100, 
+        help='maximum number of listings to scrape — by default 100'
     )
 
     parser.add_argument(
