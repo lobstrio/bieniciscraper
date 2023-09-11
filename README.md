@@ -97,6 +97,7 @@ For instance, to scrape all listings from Paris, **divide** by neighborhoods: \
 💇
 
 Always ensure that your usage adheres to the legal constraints relevant in your jurisdiction.
+If you have package-related request, please contact us at: contact@lobstr.io.
 
 ## Disclaimer
 

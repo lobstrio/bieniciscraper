@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: bieniciscraper
-Version: 1.0.2
+Version: 1.0.4
 Summary: scrape housing listings on bien'ici from any bien'ici search url 💛
 Home-page: UNKNOWN
 Author: sasha bouloudnine
@@ -109,6 +109,7 @@ For instance, to scrape all listings from Paris, **divide** by neighborhoods: \
 💇
 
 Always ensure that your usage adheres to the legal constraints relevant in your jurisdiction.
+If you have package-related request, please contact us at: contact@lobstr.io.
 
 ## Disclaimer
 
