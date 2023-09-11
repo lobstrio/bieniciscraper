@@ -1,11 +1,11 @@
 LICENSE
 MANIFEST.in
 README.md
+main.py
 setup.py
 bieniciscraper/__init__.py
 bieniciscraper/cli.py
 bieniciscraper/constants.py
-bieniciscraper/main.py
 bieniciscraper/scraper.py
 bieniciscraper.egg-info/PKG-INFO
 bieniciscraper.egg-info/SOURCES.txt

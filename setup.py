@@ -5,7 +5,7 @@ with open('README.md', 'r', encoding='utf-8') as f:
 
 setup(
     name='bieniciscraper',
-    version='1.1.2',
+    version='1.1.3',
     description='scrape housing listings on bien\'ici from any bien\'ici search url 💛',
     long_description=long_description,
     long_description_content_type='text/markdown',
@@ -13,13 +13,14 @@ setup(
     author='sasha bouloudnine',
     author_email='sasha.bouloudnine@lobstr.io',
     packages=find_packages(),
+    py_modules=['main'],
     install_requires=[
         'requests',
         'retry',
     ],
     entry_points={
         'console_scripts': [
-            'bieniciscraper = bieniciscraper.main:main',
+            'bieniciscraper = main:main',
         ],
     },
     classifiers=[
