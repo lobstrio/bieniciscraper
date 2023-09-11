@@ -18,7 +18,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'bieniciscraper = bieniciscraper.cli:main',
+            'bieniciscraper = bieniciscraper.main:main',
         ],
     },
 )
