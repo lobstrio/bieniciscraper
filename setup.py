@@ -5,7 +5,7 @@ with open('README.md', 'r', encoding='utf-8') as f:
 
 setup(
     name='bieniciscraper',
-    version='1.0.1',
+    version='1.0.2',
     description='scrape housing listings on bien\'ici from any bien\'ici search url 💛',
     long_description=long_description,
     long_description_content_type='text/markdown',

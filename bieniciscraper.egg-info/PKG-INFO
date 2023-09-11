@@ -10,117 +10,88 @@ Platform: UNKNOWN
 Description-Content-Type: text/markdown
 License-File: LICENSE
 
-# bienici-listings-scraper
+# bieniciscraper
 
-`bienici-listings-scraper` will let you download **all listings from any Bien'Ici search URL** 💛
+`bieniciscraper` is a Python package that allows you to scrape all real estate listings from any Bien'Ici URL 💛
 
-With **8 main attributes** per listing: 
+## Table of Contents
 
-* city
-* postal_code
-* ad_type
-* property_type
-* reference
-* title
-* publication_date
-* modification_date
-* new_property
-* rooms_quantity
-* bedrooms_quantity
-* price
-* photos
+1. [Features](#features)
+2. [Installation](#installation)
+3. [Usage](#usage)
+4. [Command-line Arguments](#command-line-arguments)
+5. [Important Notes](#important-notes)
+6. [Disclaimer](#disclaimer)
+7. [License](#license)
 
-Below, the power of the `.py` script: 
+## Features
 
-```bash
-$ python3 bienici-listings-scraper.py -u https://www.bienici.com/recherche/achat/france/chateau -p 1  
-going to page: 1
-total results: 555
-total results to scrape: 25
-scraped: Domaine 6 hectares proche Etretat
-scraped: Château à vendre dans le lot avec dépendances et piscine.
-scraped: Château en vente à LURCY LEVIS
-scraped: Manoir 15 pièces BIVIERS
-scraped: Château
-scraped: DOMAINE D'EXCEPTION MONTS DU LYONNAIS
-scraped: Château
-scraped: Eyzines - Domaine de 463m² avec 6800m² de terrain - piscine - dépendance
-scraped: Magnifique Château du 17ème siècle avec conciergerie indépen
-scraped: Istres (13)  -  UNIQUE !!!
-scraped: Château
-scraped: A VENDRE, RARE,04210,Château du XIII ièm siècle, pour les amoureux de l' AUTHENTICITE !
-scraped: Vente Château 8 pièces
-scraped: Exclusivité : Château entre Armagnac et Lomagne
-scraped: Magnifique maison de Maître historique
-scraped: Vente Château 8 pièces
-scraped: Château
-scraped: Château 5 chambre(s) à vendre
-scraped: Domaine et Château avec Parc de plus de 18000m² !
-scraped: Vente Château 29 pièces
-scraped: CHATEAU
-scraped: MORVAN LAVAULT DE FRETOY
-scraped: Château
-scraped: Château fin XIXe -début XXe Siècle
-max page reached
-csv written
-elapsed: 0.50 s
-~~ success
-_       _         _            
-| |     | |       | |          
-| | ___ | |__  ___| |_ __ __  
-| |/ _ \| '_ \/ __| __/| '__|
-| | (_) | |_) \__ \ |_ | |  
-|_|\___/|_.__/|___/\__||_|  
-
-```
-
-You can scrape the data from any search URL of any kind, using the dynamic `-u` argument. Data is afterwards immediately exported to a clean and structured `.csv` file named as `data_bienici_lobstr_io.csv`, in the same folder of your .py script.
-
-## Feature Support
-
-`bienici-listings-scraper.py` is a Python scraper, which let you download listings from **any** Bien'Ici URL.
-
-* all listings
-* 8 attributes per listing
-* possibly limited collection scope with max page `-p` dynamic argument
-* any search url supported with `-u` dynamic argument
-* elegant `@class` structure
-* data exported in structure `.csv` file
-
-`bienici-listings-scraper` supports Python 3.9.6.
+* **URL Support**: Accepts any search URL.
+* **Comprehensive Data**:
+  * Retrieves all listings.
+  * Extracts __13 attributes__ per listing:
+    - city
+    - postal_code
+    - ad_type
+    - property_type
+    - reference
+    - title
+    - publication_date
+    - modification_date
+    - new_property
+    - rooms_quantity
+    - bedrooms_quantity
+    - price
+    - photos
+* **Flexibility**:
+  * Limit the scope of scraping with the dynamic `-l` argument.
+  * Use any search URL with the `-u` dynamic argument.
+  * Export data with a customized file name using the `-o` dynamic argument.
+* **Reliability**:
+  * A resilient structure with the applied `retry` logic.
+  * Exports data in a structured `.csv` file format.
 
 ## Installation
 
-To run `bienici-listings-scraper`:
-
-1. Download the `.py` file
-2. Install dependencies
-3. Run the `.py` script
-
 ```bash
-$ pip3 install requests retry
-$ python3 -u https://www.bienici.com/recherche/achat/france/chateau -p 1 bienici-listings-scraper.py
+$ pip3 install bieniciscraper
 ```
 
-NB: by default, listings are scraped from this specific search URL https://www.bienici.com/recherche/achat/france/chateau.
+> **Note**: The installation will also install the `requests` and `retry` external libraries.
 
-✨
+## Usage
 
-## Notes
+```bash
+$ bieniciscraper -u https://www.bienici.com/recherche/achat/france/chateau -l 10 -o demo.csv
+```
 
-This Python script collect data from internal Bien'Ici API, and does convert any Bien'Ici search URL into avaialable API request, through advanced website-side JS reverse-engineering. Any location, any flat type, any budget, any advanced requests (balcon, digicode, dernier étage): collect data from any starting search URL.
+## Command-line Arguments
 
-Beware: you can scrape __up to 2,500 ads per search url__. In fact, Bien'ici gives access to a maximum of 100 pages, and limits the display thereafter.
-If you want to bypass this limitation, please do split your main search link within smaller scope links
+* `--url/-u`: Specify your search URL.
+* `--limit/-l`: Limit the number of items you want to scrape.
+* `--output/-o`: Name the file in which data will be saved.
+
+## Important Notes
+
+This Python script collects data from the internal Bien'Ici API. It can convert any Bien'Ici search URL into an available API request using advanced website-side JS reverse-engineering.
+
+Beware: scraping is limited to **2,500 ads per search url**. Bien'ici allows access to a maximum of 100 pages and then limits the display. To bypass this limitation, split your main search link into smaller scoped links:
+
+For instance, to scrape all listings from Paris, **divide** by neighborhoods: \
+75001 all listings \
+75002 all listings \
+... and so on.
 
 💇
 
-For example, if you want to scrape all listings from Paris, **split** within neighborhoods: \
-75001 all listings \
-75002 all listings \
-etc.
+Always ensure that your usage adheres to the legal constraints relevant in your jurisdiction.
 
+## Disclaimer
 
+This tool is intended for educational use. Always ensure that scraping a website is within your legal rights before using this or any other scraping tool. Respect the `robots.txt` of websites and be conscious of ethical and legal considerations.
 
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 
