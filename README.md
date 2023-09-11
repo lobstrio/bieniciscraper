@@ -2,25 +2,7 @@
 
 `bieniciscraper` is a Python package that allows you to scrape all real estate listings from any Bien'Ici URL 💛
 
-With up to __13 attributes__ collected per listing: 
-
-* city
-* postal_code
-* ad_type
-* property_type
-* reference
-* title
-* publication_date
-* modification_date
-* new_property
-* rooms_quantity
-* bedrooms_quantity
-* price
-* photos
-
-✨
-
-## Table of Contents
+## Table
 
 1. [Features](#features)
 2. [Installation](#installation)
