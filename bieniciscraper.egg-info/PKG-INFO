@@ -1,12 +1,15 @@
 Metadata-Version: 2.1
 Name: bieniciscraper
-Version: 1.1.1
+Version: 1.1.2
 Summary: scrape housing listings on bien'ici from any bien'ici search url 💛
-Home-page: UNKNOWN
+Home-page: https://github.com/lobstrio/bieniciscraper
 Author: sasha bouloudnine
 Author-email: sasha.bouloudnine@lobstr.io
 License: UNKNOWN
 Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
 Description-Content-Type: text/markdown
 License-File: LICENSE
 

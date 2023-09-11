@@ -5,11 +5,11 @@ with open('README.md', 'r', encoding='utf-8') as f:
 
 setup(
     name='bieniciscraper',
-    version='1.1.1',
+    version='1.1.2',
     description='scrape housing listings on bien\'ici from any bien\'ici search url 💛',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    url='https://github.com/lobstrio/bieniciscraper',  # Add your package's URL here
+    url='https://github.com/lobstrio/bieniciscraper',
     author='sasha bouloudnine',
     author_email='sasha.bouloudnine@lobstr.io',
     packages=find_packages(),

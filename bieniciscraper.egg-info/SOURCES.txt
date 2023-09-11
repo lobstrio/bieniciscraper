@@ -3,6 +3,7 @@ MANIFEST.in
 README.md
 setup.py
 bieniciscraper/__init__.py
+bieniciscraper/cli.py
 bieniciscraper/constants.py
 bieniciscraper/main.py
 bieniciscraper/scraper.py
