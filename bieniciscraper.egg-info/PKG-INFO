@@ -63,6 +63,30 @@ $ pip3 install bieniciscraper
 
 ```bash
 $ bieniciscraper -u https://www.bienici.com/recherche/achat/france/chateau -l 10 -o demo.csv
+going to page: 1
+total results: 591
+total results to scrape: 10
+scraped: Château à vendre dans le lot avec dépendances et piscine.
+scraped: Turenne Collonges la rouge - Demeure du XVIII siècle de 300 m² habitables sur une parcelle 1,9 ha à rénover entièrement
+scraped: Manoir 15 pièces BIVIERS
+scraped: Château du XVIème siècle et son parc au coeur de Lyon
+scraped: Domaine 3 hectares proche Etretat
+scraped: Vente Château 19 pièces
+scraped: ANCIENNE DEPENDANCE DE L'ABBAYE DE CONQUES, CONSTITUEE D'UN CHATEAU
+scraped: Château
+scraped: Vente Château 8 pièces
+scraped: DOMAINE D'EXCEPTION MONTS DU LYONNAIS
+limit reached
+csv written
+elapsed: 1.20 s
+~~ success
+ _       _         _            
+| |     | |       | |          
+| | ___ | |__  ___| |_ __ __  
+| |/ _ \| '_ \/ __| __/| '__|
+| | (_) | |_) \__ \ |_ | |  
+|_|\___/|_.__/|___/\__||_|  
+
 ```
 
 ## Command-line Arguments
